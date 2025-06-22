@@ -8,8 +8,8 @@ import DatosNegocio from './DatosNegocio';
 
 const COMPONENTS = {
   sign_up: SignUp,
-  verify_mail: VerifyMail,
-  otp_code: OtpCode,
+  verify_mail: OtpCode,
+  otp_code: VerifyMail,
   datos_propietario: DatosPropietario,
   datos_negocio: DatosNegocio,
 };
