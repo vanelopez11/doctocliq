@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./SignUp.css";
 
 const SignUp = ({ goTo, goHome }) => {
-  const [email, setEmail] = useState("lopez.vanessa@pucp.pe");
-  const [password, setPassword] = useState("Lc0de#2020");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [showPasswordTooltip, setShowPasswordTooltip] = useState(false);
 
   // Validaciones de contraseña
   const validatePassword = (password) => {
@@ -24,12 +26,15 @@ const SignUp = ({ goTo, goHome }) => {
 
   const passwordValidations = validatePassword(password);
 
+  // Verificar si el formulario está completo
+  const isFormComplete =
+    email.length > 0 &&
+    passwordValidations.minLength &&
+    passwordValidations.hasThreeRequirements;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      passwordValidations.minLength &&
-      passwordValidations.hasThreeRequirements
-    ) {
+    if (isFormComplete) {
       goTo("verify_mail");
     }
   };
@@ -41,6 +46,29 @@ const SignUp = ({ goTo, goHome }) => {
 
   return (
     <div className="signup-container">
+      {/* Indicador de pasos */}
+      <div className="step-indicator">
+        <div className="step-item active">
+          <div className="step-number">1</div>
+          <div className="step-label">Cuenta</div>
+        </div>
+        <div className="step-divider"></div>
+        <div className="step-item">
+          <div className="step-number">2</div>
+          <div className="step-label">Verificación</div>
+        </div>
+        <div className="step-divider"></div>
+        <div className="step-item">
+          <div className="step-number">3</div>
+          <div className="step-label">Datos</div>
+        </div>
+        <div className="step-divider"></div>
+        <div className="step-item">
+          <div className="step-number">4</div>
+          <div className="step-label">Negocio</div>
+        </div>
+      </div>
+
       <div className="signup-card">
         <div className="signup-header">
           <div className="doctocliq-logo">
@@ -51,6 +79,68 @@ const SignUp = ({ goTo, goHome }) => {
           <p className="signup-subtitle">Sign Up to Doctocliq</p>
         </div>
 
+        {/* Botones sociales primero */}
+        <div className="social-section">
+          <div className="social-title">Continuar con</div>
+          <div className="social-buttons">
+            <button
+              className="social-button"
+              onClick={() => handleSocialLogin("Google")}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 21 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.25 15.4167V4.58334L7.33333 10L0.25 15.4167Z"
+                  fill="#FBBC05"
+                />
+                <path
+                  d="M0.25 4.58333L7.33333 10L10.25 7.45833L20.25 5.83333V0H0.25V4.58333Z"
+                  fill="#EA4335"
+                />
+                <path
+                  d="M0.25 15.4167L12.75 5.83333L16.0417 6.25L20.25 0V20H0.25V15.4167Z"
+                  fill="#34A853"
+                />
+                <path
+                  d="M20.25 20L7.33333 10L5.66667 8.75L20.25 4.58334V20Z"
+                  fill="#4285F4"
+                />
+              </svg>
+              Google
+            </button>
+
+            <button
+              className="social-button"
+              onClick={() => handleSocialLogin("Apple")}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 21 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.9406 15.3235C17.6524 15.9894 17.3112 16.6024 16.9159 17.1659C16.3771 17.9341 15.9359 18.4659 15.5959 18.7612C15.0688 19.2459 14.5041 19.4941 13.8994 19.5082C13.4653 19.5082 12.9418 19.3847 12.3324 19.1341C11.7209 18.8847 11.1591 18.7612 10.6453 18.7612C10.1065 18.7612 9.52859 18.8847 8.91047 19.1341C8.29141 19.3847 7.79271 19.5153 7.41141 19.5282C6.83153 19.5529 6.25353 19.2977 5.67659 18.7612C5.30835 18.44 4.84776 17.8894 4.296 17.1094C3.704 16.2765 3.21729 15.3106 2.836 14.2094C2.42765 13.02 2.22294 11.8682 2.22294 10.7532C2.22294 9.47589 2.49894 8.37424 3.05176 7.45106C3.48623 6.70953 4.06423 6.12459 4.78765 5.69518C5.51106 5.26577 6.29271 5.04694 7.13447 5.03294C7.59506 5.03294 8.19906 5.17542 8.94965 5.45542C9.69812 5.73636 10.1787 5.87883 10.3894 5.87883C10.5469 5.87883 11.0808 5.71224 11.9859 5.38012C12.8418 5.07212 13.5641 4.94459 14.1559 4.99483C15.7594 5.12424 16.9641 5.75636 17.7653 6.89518C16.3312 7.76412 15.6218 8.98118 15.6359 10.5425C15.6488 11.7586 16.09 12.7706 16.9571 13.5741C17.35 13.9471 17.7888 14.2353 18.2771 14.44C18.1712 14.7471 18.0594 15.0412 17.9406 15.3235ZM14.2629 0.851768C14.2629 1.80494 13.9147 2.69494 13.2206 3.51871C12.3829 4.498 11.3698 5.06389 10.2711 4.97459C10.2563 4.85476 10.249 4.73415 10.2489 4.61342C10.2489 3.69836 10.6473 2.71906 11.3547 1.91836C11.7079 1.51294 12.1571 1.17589 12.7018 0.906945C13.2453 0.642004 13.7594 0.495533 14.2429 0.470474C14.2571 0.597886 14.2629 0.725415 14.2629 0.851768Z"
+                  fill="black"
+                />
+              </svg>
+              Apple
+            </button>
+          </div>
+        </div>
+
+        <div className="divider">
+          <span className="divider-line"></span>
+          <span className="divider-text">O</span>
+          <span className="divider-line"></span>
+        </div>
+
         <form className="signup-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <div className="input-wrapper">
@@ -59,6 +149,7 @@ const SignUp = ({ goTo, goHome }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-input"
+                placeholder=" "
                 required
               />
               <label className="floating-label">Email address*</label>
@@ -66,12 +157,17 @@ const SignUp = ({ goTo, goHome }) => {
           </div>
 
           <div className="form-group">
-            <div className="input-wrapper password-wrapper">
+            <div
+              className="input-wrapper password-wrapper"
+              onMouseEnter={() => setShowPasswordTooltip(true)}
+              onMouseLeave={() => setShowPasswordTooltip(false)}
+            >
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-input"
+                placeholder=" "
                 required
               />
               <label className="floating-label">Password*</label>
@@ -96,137 +192,128 @@ const SignUp = ({ goTo, goHome }) => {
                   />
                 </svg>
               </button>
+
+              {/* Tooltip de validación de contraseña */}
+              {showPasswordTooltip && password.length > 0 && (
+                <div className="password-tooltip">
+                  <div className="tooltip-content">
+                    <p className="tooltip-title">
+                      Tu contraseña debe contener:
+                    </p>
+                    <ul className="tooltip-list">
+                      <li
+                        className={
+                          passwordValidations.minLength ? "valid" : "invalid"
+                        }
+                      >
+                        <span className="checkmark">✓</span>
+                        Al menos 8 caracteres
+                      </li>
+                      <li
+                        className={
+                          passwordValidations.hasThreeRequirements
+                            ? "valid"
+                            : "invalid"
+                        }
+                      >
+                        <span className="checkmark">✓</span>
+                        Al menos 3 de los siguientes:
+                      </li>
+                      <ul className="sub-tooltip-list">
+                        <li
+                          className={
+                            passwordValidations.hasLowercase
+                              ? "valid"
+                              : "invalid"
+                          }
+                        >
+                          <span className="checkmark">✓</span>
+                          Minúsculas (a-z)
+                        </li>
+                        <li
+                          className={
+                            passwordValidations.hasUppercase
+                              ? "valid"
+                              : "invalid"
+                          }
+                        >
+                          <span className="checkmark">✓</span>
+                          Mayúsculas (A-Z)
+                        </li>
+                        <li
+                          className={
+                            passwordValidations.hasNumbers ? "valid" : "invalid"
+                          }
+                        >
+                          <span className="checkmark">✓</span>
+                          Números (0-9)
+                        </li>
+                        <li
+                          className={
+                            passwordValidations.hasSpecialChars
+                              ? "valid"
+                              : "invalid"
+                          }
+                        >
+                          <span className="checkmark">✓</span>
+                          Caracteres especiales (!@#$%^&*)
+                        </li>
+                      </ul>
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="password-requirements">
-            <p className="requirements-title">Your password must contain:</p>
-            <ul className="requirements-list">
-              <li
-                className={passwordValidations.minLength ? "valid" : "invalid"}
-              >
-                <span className="checkmark">✓</span>
-                At least 8 characters
-              </li>
-              <li
-                className={
-                  passwordValidations.hasThreeRequirements ? "valid" : "invalid"
-                }
-              >
-                <span className="checkmark">✓</span>
-                At least 3 of the following:
-              </li>
-              <ul className="sub-requirements">
-                <li
-                  className={
-                    passwordValidations.hasLowercase ? "valid" : "invalid"
-                  }
-                >
-                  <span className="checkmark">✓</span>
-                  Lower case letters (a-z)
-                </li>
-                <li
-                  className={
-                    passwordValidations.hasUppercase ? "valid" : "invalid"
-                  }
-                >
-                  <span className="checkmark">✓</span>
-                  Upper case letters (A-Z)
-                </li>
-                <li
-                  className={
-                    passwordValidations.hasNumbers ? "valid" : "invalid"
-                  }
-                >
-                  <span className="checkmark">✓</span>
-                  Numbers (0-9)
-                </li>
-                <li
-                  className={
-                    passwordValidations.hasSpecialChars ? "valid" : "invalid"
-                  }
-                >
-                  <span className="checkmark">✓</span>
-                  Special characters (e.g. !@#$%^&*)
-                </li>
-              </ul>
-            </ul>
+          {/* Checkbox Recuérdame */}
+          <div className="form-group remember-me">
+            <label className="checkbox-wrapper">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="checkbox-input"
+              />
+              <span className="checkbox-custom"></span>
+              <span className="checkbox-label">Recuérdame</span>
+            </label>
           </div>
 
           <button
             type="submit"
-            className="continue-button"
-            disabled={
-              !passwordValidations.minLength ||
-              !passwordValidations.hasThreeRequirements
-            }
+            className={`continue-button ${isFormComplete ? "active" : ""}`}
+            disabled={!isFormComplete}
           >
-            Continue
+            {isFormComplete ? (
+              <>
+                <span>Continue</span>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 12L10 8L6 4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </>
+            ) : (
+              "Complete los campos requeridos"
+            )}
           </button>
         </form>
 
         <div className="login-link">
-          <span>Already have an account? </span>
+          <span>¿Ya tienes una cuenta? </span>
           <button className="link-button" onClick={() => goTo("login")}>
-            Log in
-          </button>
-        </div>
-
-        <div className="divider">
-          <span className="divider-line"></span>
-          <span className="divider-text">OR</span>
-          <span className="divider-line"></span>
-        </div>
-
-        <div className="social-buttons">
-          <button
-            className="social-button"
-            onClick={() => handleSocialLogin("Google")}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 21 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0.25 15.4167V4.58334L7.33333 10L0.25 15.4167Z"
-                fill="#FBBC05"
-              />
-              <path
-                d="M0.25 4.58333L7.33333 10L10.25 7.45833L20.25 5.83333V0H0.25V4.58333Z"
-                fill="#EA4335"
-              />
-              <path
-                d="M0.25 15.4167L12.75 5.83333L16.0417 6.25L20.25 0V20H0.25V15.4167Z"
-                fill="#34A853"
-              />
-              <path
-                d="M20.25 20L7.33333 10L5.66667 8.75L20.25 4.58334V20Z"
-                fill="#4285F4"
-              />
-            </svg>
-            Continue with Google
-          </button>
-
-          <button
-            className="social-button"
-            onClick={() => handleSocialLogin("Apple")}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 21 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M17.9406 15.3235C17.6524 15.9894 17.3112 16.6024 16.9159 17.1659C16.3771 17.9341 15.9359 18.4659 15.5959 18.7612C15.0688 19.2459 14.5041 19.4941 13.8994 19.5082C13.4653 19.5082 12.9418 19.3847 12.3324 19.1341C11.7209 18.8847 11.1591 18.7612 10.6453 18.7612C10.1065 18.7612 9.52859 18.8847 8.91047 19.1341C8.29141 19.3847 7.79271 19.5153 7.41141 19.5282C6.83153 19.5529 6.25353 19.2977 5.67659 18.7612C5.30835 18.44 4.84776 17.8894 4.296 17.1094C3.704 16.2765 3.21729 15.3106 2.836 14.2094C2.42765 13.02 2.22294 11.8682 2.22294 10.7532C2.22294 9.47589 2.49894 8.37424 3.05176 7.45106C3.48623 6.70953 4.06423 6.12459 4.78765 5.69518C5.51106 5.26577 6.29271 5.04694 7.13447 5.03294C7.59506 5.03294 8.19906 5.17542 8.94965 5.45542C9.69812 5.73636 10.1787 5.87883 10.3894 5.87883C10.5469 5.87883 11.0808 5.71224 11.9859 5.38012C12.8418 5.07212 13.5641 4.94459 14.1559 4.99483C15.7594 5.12424 16.9641 5.75636 17.7653 6.89518C16.3312 7.76412 15.6218 8.98118 15.6359 10.5425C15.6488 11.7586 16.09 12.7706 16.9571 13.5741C17.35 13.9471 17.7888 14.2353 18.2771 14.44C18.1712 14.7471 18.0594 15.0412 17.9406 15.3235ZM14.2629 0.851768C14.2629 1.80494 13.9147 2.69494 13.2206 3.51871C12.3829 4.498 11.3698 5.06389 10.2711 4.97459C10.2563 4.85476 10.249 4.73415 10.2489 4.61342C10.2489 3.69836 10.6473 2.71906 11.3547 1.91836C11.7079 1.51294 12.1571 1.17589 12.7018 0.906945C13.2453 0.642004 13.7594 0.495533 14.2429 0.470474C14.2571 0.597886 14.2629 0.725415 14.2629 0.851768Z"
-                fill="black"
-              />
-            </svg>
-            Continue with Apple
+            Iniciar sesión
           </button>
         </div>
       </div>
@@ -239,10 +326,7 @@ const SignUp = ({ goTo, goHome }) => {
         <button
           onClick={() => goTo("verify_mail")}
           className="nav-button next-button"
-          disabled={
-            !passwordValidations.minLength ||
-            !passwordValidations.hasThreeRequirements
-          }
+          disabled={!isFormComplete}
         >
           Siguiente
         </button>
