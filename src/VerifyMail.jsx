@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./VerifyMail.css";
 
-const VerifyMail = ({ goTo, goHome }) => {
+const VerifyMail = ({
+  goTo,
+  goHome,
+  email = "vanessa.lopez.test.2@gmail.com",
+}) => {
   const [otpCode, setOtpCode] = useState(["", "", "", ""]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const inputRefs = useRef([]);
-  const email = "vanessa.lopez.test.2@gmail.com"; // This could be passed as prop
 
   // Auto-focus on first input when component mounts
   useEffect(() => {
