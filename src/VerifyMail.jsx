@@ -291,7 +291,7 @@ const VerifyMail = ({ goTo, goHome }) => {
           <span className="mail-icon">✉</span>
           <button
             className="back-link"
-            onClick={() => goTo("signup")}
+            onClick={() => goTo("sign_up")}
             disabled={isLoading}
           >
             Volver a ingresar mi correo
