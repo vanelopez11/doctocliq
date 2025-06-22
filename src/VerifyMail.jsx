@@ -87,7 +87,8 @@ const VerifyMail = ({ goTo, goHome }) => {
       const codeString = otpCode.join("");
 
       // Simulate validation (replace with actual API call)
-      if (codeString === "1234") {
+      // For demo purposes, accept any 4-digit code, but in production this would validate against the sent code
+      if (codeString.length === 4 && /^\d{4}$/.test(codeString)) {
         // Success - navigate to next step
         goTo("datos_propietario");
       } else {
