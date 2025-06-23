@@ -164,14 +164,14 @@ const DatosPropietario = ({ goTo, goHome }) => {
         <div className="progress-steps">
           <div className="step active">
             <div className="step-circle active">
-              <span className="step-number">1</span>
+              <span style={{ color: 'white' }}>1</span>
             </div>
             <span className="step-label active">Datos del propietario</span>
           </div>
           <div className="step-divider"></div>
           <div className="step">
             <div className="step-circle">
-              <span className="step-number">2</span>
+              <span>2</span>
             </div>
             <span className="step-label">Datos del negocio</span>
           </div>
