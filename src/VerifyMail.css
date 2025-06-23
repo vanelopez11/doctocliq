@@ -25,11 +25,19 @@
   min-height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: var(--color-white-solid);
-  padding: 20px;
+  padding: 80px 20px 20px;
   box-sizing: border-box;
+}
+
+/* StepHeader separation */
+.step-header-container {
+  width: 100%;
+  max-width: 472px;
+  margin-bottom: 24px;
 }
 
 /* Main Card */

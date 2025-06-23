@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import StepHeader from "./StepHeader";
 
 const tiposNegocio = [
   "Odontologia",
@@ -27,7 +28,9 @@ const DatosNegocio = ({ goTo, goHome }) => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      background: "#f7fafd"
+      background: "#f7fafd",
+      paddingTop: "80px",
+      paddingBottom: "20px"
     }}>
       <div style={{
         background: "#fff",
@@ -39,43 +42,13 @@ const DatosNegocio = ({ goTo, goHome }) => {
         width: "100%",
         position: "relative"
       }}>
-        {/* Header con botones */}
-        <header style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 24,
-        }}>
-          <button
-            onClick={goHome}
-            style={{
-              background: "none",
-              border: "none",
-              color: "#0097a9",
-              fontWeight: "bold",
-              fontSize: 16,
-              cursor: "pointer"
-            }}
-          >
-            Inicio
-          </button>
-          <button
-            onClick={() => goTo && goTo("home")}
-            style={{
-              background: "none",
-              border: "none",
-              color: "transparent",
-              fontWeight: "bold",
-              fontSize: 16,
-              cursor: "default"
-            }}
-            tabIndex={-1}
-            aria-hidden="true"
-          >
-            {/* Espacio para alinear */}
-            Siguiente
-          </button>
-        </header>
+        <StepHeader
+          currentStep={4}
+          showSteps={true}
+          onInicio={goHome}
+          onSiguiente={() => goTo && goTo("home")}
+          siguienteDisabled={!aceptaTerminos}
+        />
 
         {/* Bloques de oferta y ayuda */}
         <div style={{ display: 'flex', gap: 12, marginBottom: 18 }}>
@@ -234,26 +207,6 @@ const DatosNegocio = ({ goTo, goHome }) => {
           </button>
         </div>
       </div>
-      {/* Botón siguiente en la esquina superior derecha */}
-      <button
-        onClick={() => goTo && goTo("home")}
-        style={{
-          position: "fixed",
-          top: 24,
-          right: 32,
-          background: "#0097a9",
-          color: "#fff",
-          border: "none",
-          borderRadius: 8,
-          padding: "10px 24px",
-          fontSize: 16,
-          fontWeight: "bold",
-          cursor: "pointer",
-          zIndex: 10,
-        }}
-      >
-        Siguiente
-      </button>
     </div>
   );
 };

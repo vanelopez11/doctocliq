@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./VerifyMail.css";
+import StepHeader from "./StepHeader";
 
 const VerifyMail = ({
   goTo,
@@ -93,7 +94,7 @@ const VerifyMail = ({
       // For demo purposes, accept any 4-digit code, but in production this would validate against the sent code
       if (codeString.length === 4 && /^\d{4}$/.test(codeString)) {
         // Success - navigate to next step
-        goTo("datos_propietario");
+        goTo("otp_code");
       } else {
         setError("Código incorrecto. Intenta nuevamente.");
         // Clear the code and focus first input
@@ -128,6 +129,12 @@ const VerifyMail = ({
 
   return (
     <div className="verify-mail-container">
+      <StepHeader
+        currentStep={2}
+        showSteps={true}
+        onInicio={goHome}
+        onSiguiente={() => goTo("otp_code")}
+      />
       <div className="verify-mail-card">
         {/* Header Section */}
         <div className="verify-header">

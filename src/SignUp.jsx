@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SignUp.css";
+import StepHeader from "./StepHeader";
 
 const SignUp = ({ goTo, goHome }) => {
   const [email, setEmail] = useState("");
@@ -7,6 +8,9 @@ const SignUp = ({ goTo, goHome }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [showPasswordTooltip, setShowPasswordTooltip] = useState(false);
+
+  // Referencia al formulario para poder hacer submit desde el header
+  const formRef = React.useRef();
 
   // Validaciones de contraseña
   const validatePassword = (password) => {
@@ -44,30 +48,20 @@ const SignUp = ({ goTo, goHome }) => {
     // Aquí iría la lógica de autenticación social
   };
 
+  // Handler para el botón Siguiente del header (sin validación)
+  const handleHeaderNext = () => {
+    goTo("verify_mail");
+  };
+
   return (
     <div className="signup-container">
-      {/* Indicador de pasos */}
-      <div className="step-indicator">
-        <div className="step-item active">
-          <div className="step-number">1</div>
-          <div className="step-label">Cuenta</div>
-        </div>
-        <div className="step-divider"></div>
-        <div className="step-item">
-          <div className="step-number">2</div>
-          <div className="step-label">Verificación</div>
-        </div>
-        <div className="step-divider"></div>
-        <div className="step-item">
-          <div className="step-number">3</div>
-          <div className="step-label">Datos</div>
-        </div>
-        <div className="step-divider"></div>
-        <div className="step-item">
-          <div className="step-number">4</div>
-          <div className="step-label">Negocio</div>
-        </div>
-      </div>
+      {/* Header con navegación y pasos */}
+      <StepHeader
+        currentStep={1}
+        showSteps={true}
+        onInicio={goHome}
+        onSiguiente={handleHeaderNext}
+      />
 
       <div className="signup-card">
         <div className="signup-header">
@@ -141,7 +135,7 @@ const SignUp = ({ goTo, goHome }) => {
           <span className="divider-line"></span>
         </div>
 
-        <form className="signup-form" onSubmit={handleSubmit}>
+        <form className="signup-form" onSubmit={handleSubmit} ref={formRef}>
           <div className="form-group">
             <div className="input-wrapper">
               <input
@@ -316,20 +310,6 @@ const SignUp = ({ goTo, goHome }) => {
             Iniciar sesión
           </button>
         </div>
-      </div>
-
-      {/* Botones de navegación originales */}
-      <div className="navigation-buttons">
-        <button onClick={goHome} className="nav-button">
-          Inicio
-        </button>
-        <button
-          onClick={() => goTo("verify_mail")}
-          className="nav-button next-button"
-          disabled={!isFormComplete}
-        >
-          Siguiente
-        </button>
       </div>
     </div>
   );

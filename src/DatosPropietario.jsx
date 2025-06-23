@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DatosPropietario.css";
+import StepHeader from "./StepHeader";
 
 // List of countries with codes for the dropdown
 const COUNTRIES = [
@@ -139,16 +140,19 @@ const DatosPropietario = ({ goTo, goHome }) => {
     }
   };
 
-  // Handle continue button click
-  const handleContinue = () => {
-    if (isFormValid()) {
-      // Here you could save the form data or perform any necessary actions
-      goTo("datos_negocio");
-    }
+  // Handler para el botón Siguiente del header (sin validación)
+  const handleHeaderNext = () => {
+    goTo("datos_negocio");
   };
 
   return (
     <div className="datos-propietario-container">
+      <StepHeader
+        currentStep={3}
+        showSteps={true}
+        onInicio={goHome}
+        onSiguiente={handleHeaderNext}
+      />
       <div className="datos-propietario-card">
         {/* Header with title */}
         <div className="form-header">
@@ -173,7 +177,7 @@ const DatosPropietario = ({ goTo, goHome }) => {
         </div>
 
         {/* Form */}
-        <form className="owner-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="owner-form" onSubmit={e => { e.preventDefault(); goTo("datos_negocio"); }}>
           {/* Nombre */}
           <div className="form-field">
             <label className="form-label">
@@ -319,35 +323,34 @@ const DatosPropietario = ({ goTo, goHome }) => {
               <span className="error-message">{errors.telefono}</span>
             )}
           </div>
+
+          {/* Terms and conditions */}
+          <div className="terms-section">
+            <p className="terms-text">
+              Al continuar acepto los{" "}
+              <a href="#" className="terms-link">
+                términos y condiciones
+              </a>{" "}
+              y{" "}
+              <a href="#" className="terms-link">
+                política de privacidad
+              </a>
+            </p>
+          </div>
+
+          {/* Action buttons */}
+          <div className="action-buttons">
+            <button className="exit-button" onClick={goHome}>
+              Salir
+            </button>
+            <button
+              className="continue-button active"
+              type="submit"
+            >
+              Continuar
+            </button>
+          </div>
         </form>
-
-        {/* Terms and conditions */}
-        <div className="terms-section">
-          <p className="terms-text">
-            Al continuar acepto los{" "}
-            <a href="#" className="terms-link">
-              términos y condiciones
-            </a>{" "}
-            y{" "}
-            <a href="#" className="terms-link">
-              política de privacidad
-            </a>
-          </p>
-        </div>
-
-        {/* Action buttons */}
-        <div className="action-buttons">
-          <button className="exit-button" onClick={goHome}>
-            Salir
-          </button>
-          <button
-            className={`continue-button ${isFormValid() ? "active" : ""}`}
-            onClick={handleContinue}
-            disabled={!isFormValid()}
-          >
-            Continuar
-          </button>
-        </div>
       </div>
     </div>
   );

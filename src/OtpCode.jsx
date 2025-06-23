@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./OtpCode.css";
+import StepHeader from "./StepHeader";
 
 const OtpCode = ({ goTo, goHome }) => {
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
@@ -38,18 +39,11 @@ const OtpCode = ({ goTo, goHome }) => {
 
   return (
     <div className="otp-container">
-      <header className="otp-header">
-        <button onClick={goHome} className="nav-button nav-button--back">
-          Inicio
-        </button>
-        <button
-          onClick={() => goTo("datos_propietario")}
-          className="nav-button nav-button--next"
-          disabled={isExpired}
-        >
-          Siguiente
-        </button>
-      </header>
+      <StepHeader
+        onInicio={goHome}
+        onSiguiente={() => goTo("datos_propietario")}
+        siguienteDisabled={isExpired}
+      />
 
       <main className="otp-main">
         <div className="email-card">
