@@ -212,7 +212,7 @@ const DatosNegocio = ({ goTo, goHome }) => {
                   marginRight: 4
                 }}>✔</span>
                 <div>
-                  <div style={{ fontWeight: 600, color: '#222' }}>7 días gratis plan premium</div>
+                  <div style={{ fontWeight: 600, color: '#222' }}>7 días gratis Plan Premium</div>
                   <div style={{ fontSize: 13, color: '#222' }}>Sin costo inicial</div>
                 </div>
               </div>
