@@ -112,6 +112,14 @@
   background: var(--color-cyan-32);
 }
 
+.step-circle span {
+  color: #222;
+}
+
+.step-circle.active span {
+  color: #fff;
+}
+
 .step-number {
   font-family: var(--font-family-nunito);
   font-size: 15px;
@@ -318,6 +326,18 @@
   box-shadow: 0 4px 12px rgba(0, 139, 161, 0.12);
 }
 
+.membresia-card div {
+  color: #222;
+}
+
+.membresia-card .detalle {
+  color: #222;
+}
+
+input[type="checkbox"] {
+  accent-color: #fff;
+}
+
 @media (max-width: 768px) {
   .datos-negocio-container {
     padding: 16px;
@@ -340,30 +360,43 @@
 
 @media (max-width: 480px) {
   .datos-negocio-card {
-    padding: 24px 16px 20px;
-  }
-  .form-title {
-    font-size: 16px;
-    line-height: 24px;
+    padding: 16px 4px 12px;
+    min-width: 0;
+    width: 100vw;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
   .progress-steps {
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 8px;
+    margin-top: 200px; /* Aumentado para mejor visibilidad en móvil */
+    flex-wrap: wrap;
   }
   .step-divider {
-    width: 24px;
+    width: 16px;
   }
-  .step-label {
-    display: none;
+  .membresia-options {
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
   }
-  .form-field {
-    margin-bottom: 16px;
+  .membresia-card {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 12px 8px !important;
+    font-size: 15px !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
   }
-  .form-input, .form-select {
-    height: 40px;
+  .action-buttons {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
   }
-  .terms-text {
-    font-size: var(--font-size-12);
-    line-height: 18px;
+  .finish-button, .back-button {
+    width: 100% !important;
+    min-width: 0 !important;
+    font-size: 15px !important;
+    height: 40px !important;
   }
 }

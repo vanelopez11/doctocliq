@@ -171,7 +171,7 @@ const DatosPropietario = ({ goTo, goHome }) => {
           <div className="step-divider"></div>
           <div className="step">
             <div className="step-circle">
-              <span>2</span>
+              <span style={{ color: '#222' }}>2</span>
             </div>
             <span className="step-label">Datos del negocio</span>
           </div>

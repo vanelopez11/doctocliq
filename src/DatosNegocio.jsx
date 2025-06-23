@@ -102,7 +102,7 @@ const DatosNegocio = ({ goTo, goHome }) => {
         <div className="progress-steps">
           <div className="step">
             <div className="step-circle">
-              <span>1</span>
+              <span style={{ color: '#222' }}>1</span>
             </div>
             <span className="step-label">Datos del propietario</span>
           </div>
@@ -212,8 +212,8 @@ const DatosNegocio = ({ goTo, goHome }) => {
                   marginRight: 4
                 }}>✔</span>
                 <div>
-                  <div style={{ fontWeight: 600 }}>7 días gratis</div>
-                  <div style={{ fontSize: 13, color: '#666' }}>Sin costo inicial</div>
+                  <div style={{ fontWeight: 600, color: '#222' }}>7 días gratis</div>
+                  <div style={{ fontSize: 13, color: '#222' }}>Sin costo inicial</div>
                 </div>
               </div>
               <div
@@ -245,8 +245,8 @@ const DatosNegocio = ({ goTo, goHome }) => {
                   marginRight: 4
                 }}>✔</span>
                 <div>
-                  <div style={{ fontWeight: 600 }}>3 meses con 70% dscto.</div>
-                  <div style={{ fontSize: 13, color: '#666' }}>Ahorra en tu primer pago</div>
+                  <div style={{ fontWeight: 600, color: '#222' }}>3 meses con 70% dscto.</div>
+                  <div style={{ fontSize: 13, color: '#222' }}>Ahorra en tu primer pago</div>
                 </div>
               </div>
             </div>
@@ -254,7 +254,7 @@ const DatosNegocio = ({ goTo, goHome }) => {
           {/* Terms and conditions */}
           <div className="terms-section">
             <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 15, justifyContent: 'center' }}>
-              <input type="checkbox" checked={aceptaTerminos} onChange={e => setAceptaTerminos(e.target.checked)} style={{ accentColor: '#0097a9' }} />
+              <input type="checkbox" checked={aceptaTerminos} onChange={e => setAceptaTerminos(e.target.checked)} style={{ accentColor: '#fff' }} />
               <span className="terms-text">
                 Acepto los <a href="#" className="terms-link">términos y condiciones</a> y <a href="#" className="terms-link">política de privacidad</a>
               </span>

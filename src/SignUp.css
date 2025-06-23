@@ -569,24 +569,47 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .password-tooltip {
-    position: fixed;
-    right: 20px;
-    left: 20px;
-    top: auto;
-    bottom: 100px;
-    z-index: 1001;
+    display: none !important;
   }
-
-  .tooltip-content {
-    min-width: auto;
+  .password-helper-mobile {
+    display: block !important;
+    margin-top: 8px;
     width: 100%;
   }
+}
 
+@media (min-width: 769px) {
+  .password-helper-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .password-tooltip {
+    position: fixed;
+    right: 8px;
+    left: 8px;
+    top: auto;
+    bottom: 90px;
+    z-index: 1001;
+    width: auto;
+    max-width: calc(100vw - 16px);
+    min-width: 0;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .tooltip-content {
+    min-width: 0;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding: 12px 8px;
+    font-size: 13px;
+  }
   .tooltip-content::before,
   .tooltip-content::after {
     display: none;
   }
-
   .step-indicator {
     margin-bottom: 24px;
   }
@@ -639,6 +662,20 @@
   .step-indicator {
     transform: scale(0.9);
   }
+
+  .password-tooltip {
+    right: 0;
+    left: 0;
+    bottom: 70px;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+  }
+  .tooltip-content {
+    border-radius: 0 0 12px 12px;
+    font-size: 12px;
+    padding: 10px 4px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -652,74 +689,5 @@
 
   .step-indicator {
     transform: scale(0.8);
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .signup-container {
-    background: #121212;
-  }
-
-  .signup-card {
-    background: #1e1e1e;
-    color: #fff;
-  }
-
-  .logo-text,
-  .welcome-title,
-  .signup-subtitle,
-  .social-title,
-  .checkbox-label,
-  .login-link {
-    color: #fff;
-  }
-
-  .form-input {
-    background: #2a2a2a;
-    border-color: #404040;
-    color: #fff;
-  }
-
-  .floating-label {
-    background: #1e1e1e;
-    color: #999;
-  }
-
-  .form-input:focus + .floating-label,
-  .form-input:not(:placeholder-shown) + .floating-label {
-    color: #13a688;
-  }
-
-  .social-button {
-    background: #2a2a2a;
-    border-color: #404040;
-    color: #fff;
-  }
-
-  .social-button:hover {
-    background: #333;
-    border-color: #13a688;
-  }
-
-  .tooltip-content {
-    background: #2a2a2a;
-    border-color: #404040;
-    color: #fff;
-  }
-
-  .checkbox-custom {
-    background: #2a2a2a;
-    border-color: #404040;
-  }
-
-  .nav-button {
-    background: rgba(30, 30, 30, 0.9);
-    border-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
-  }
-
-  .nav-button:hover {
-    background: rgba(30, 30, 30, 1);
   }
 }

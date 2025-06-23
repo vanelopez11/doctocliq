@@ -116,6 +116,14 @@
   background: var(--color-cyan-32);
 }
 
+.step-circle span {
+  color: #222;
+}
+
+.step-circle.active span {
+  color: #fff;
+}
+
 .step-number {
   font-family: var(--font-family-nunito);
   font-size: 15px;
@@ -535,93 +543,45 @@
   cursor: not-allowed;
 }
 
+input[type="checkbox"] {
+  accent-color: #fff;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .datos-propietario-container {
-    padding: 16px;
+    min-height: 100vh;
+    height: auto;
+    width: 100vw;
+    display: block;
+    overflow-y: auto;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 16px 0 16px 0;
   }
-
   .datos-propietario-card {
     width: 100%;
     max-width: 510px;
-    padding: 32px 24px 24px;
-  }
-
-  .progress-steps {
-    margin-bottom: 32px;
-  }
-
-  .step-label {
-    font-size: var(--font-size-12);
-  }
-
-  .action-buttons {
-    flex-direction: column-reverse;
-    gap: 16px;
-    align-items: stretch;
-  }
-
-  .continue-button {
-    width: 100%;
-  }
-
-  .exit-button {
-    align-self: center;
+    padding: 32px 8px 24px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    max-height: none;
+    overflow-y: visible;
   }
 }
 
 @media (max-width: 480px) {
+  .datos-propietario-container {
+    padding: 0;
+  }
   .datos-propietario-card {
-    padding: 24px 16px 20px;
-  }
-
-  .form-title {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  .progress-steps {
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .step-divider {
-    width: 24px;
-  }
-
-  .step-label {
-    display: none;
-  }
-
-  .form-field {
-    margin-bottom: 16px;
-  }
-
-  .form-input,
-  .form-select,
-  .phone-input-wrapper {
-    height: 40px;
-  }
-
-  .phone-input-wrapper {
-    flex-direction: column;
-  }
-
-  .country-code-button {
-    border-right: none;
-    border-bottom: var(--stroke-weight-1) solid var(--color-azure-81);
-    justify-content: center;
-  }
-
-  .phone-input {
-    height: 40px;
-  }
-
-  .terms-text {
-    font-size: var(--font-size-12);
-    line-height: 18px;
+    padding: 16px 4px 12px;
+    max-height: none;
+    overflow-y: visible;
   }
 }
+
+/* --- Fin mejora accesibilidad móvil --- */
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {

@@ -55,7 +55,7 @@ const SignUp = ({ goTo, goHome }) => {
   };
 
   return (
-    <div className="signup-container">
+    <div className="signup-container" style={{ background: '#f8f9fa' }}>
       {/* Header con navegación y pasos */}
       <StepHeader
         currentStep={1}
@@ -190,75 +190,148 @@ const SignUp = ({ goTo, goHome }) => {
               </button>
 
               {/* Tooltip de validación de contraseña */}
-              {(passwordFocused || showPasswordTooltip) && password.length > 0 && (
-                <div className="password-tooltip">
-                  <div className="tooltip-content">
-                    <p className="tooltip-title">
-                      Tu contraseña debe contener:
-                    </p>
-                    <ul className="tooltip-list">
-                      <li
-                        className={
-                          passwordValidations.minLength ? "valid" : "invalid"
-                        }
-                      >
-                        <span className="checkmark">✓</span>
-                        Al menos 8 caracteres
-                      </li>
-                      <li
-                        className={
-                          passwordValidations.hasThreeRequirements
-                            ? "valid"
-                            : "invalid"
-                        }
-                      >
-                        <span className="checkmark">✓</span>
-                        Al menos 3 de los siguientes:
-                      </li>
-                      <ul className="sub-tooltip-list">
+              {/* Desktop/floating */}
+              <div className="password-tooltip-helper">
+                {(passwordFocused || showPasswordTooltip) && password.length > 0 && (
+                  <div className="password-tooltip">
+                    <div className="tooltip-content">
+                      <p className="tooltip-title">
+                        Tu contraseña debe contener:
+                      </p>
+                      <ul className="tooltip-list">
                         <li
                           className={
-                            passwordValidations.hasLowercase
+                            passwordValidations.minLength ? "valid" : "invalid"
+                          }
+                        >
+                          <span className="checkmark">✓</span>
+                          Al menos 8 caracteres
+                        </li>
+                        <li
+                          className={
+                            passwordValidations.hasThreeRequirements
                               ? "valid"
                               : "invalid"
                           }
                         >
                           <span className="checkmark">✓</span>
-                          Minúsculas (a-z)
+                          Al menos 3 de los siguientes:
                         </li>
-                        <li
-                          className={
-                            passwordValidations.hasUppercase
-                              ? "valid"
-                              : "invalid"
-                          }
-                        >
-                          <span className="checkmark">✓</span>
-                          Mayúsculas (A-Z)
-                        </li>
-                        <li
-                          className={
-                            passwordValidations.hasNumbers ? "valid" : "invalid"
-                          }
-                        >
-                          <span className="checkmark">✓</span>
-                          Números (0-9)
-                        </li>
-                        <li
-                          className={
-                            passwordValidations.hasSpecialChars
-                              ? "valid"
-                              : "invalid"
-                          }
-                        >
-                          <span className="checkmark">✓</span>
-                          Caracteres especiales (!@#$%^&*)
-                        </li>
+                        <ul className="sub-tooltip-list">
+                          <li
+                            className={
+                              passwordValidations.hasLowercase
+                                ? "valid"
+                                : "invalid"
+                            }
+                          >
+                            <span className="checkmark">✓</span>
+                            Minúsculas (a-z)
+                          </li>
+                          <li
+                            className={
+                              passwordValidations.hasUppercase
+                                ? "valid"
+                                : "invalid"
+                            }
+                          >
+                            <span className="checkmark">✓</span>
+                            Mayúsculas (A-Z)
+                          </li>
+                          <li
+                            className={
+                              passwordValidations.hasNumbers ? "valid" : "invalid"
+                            }
+                          >
+                            <span className="checkmark">✓</span>
+                            Números (0-9)
+                          </li>
+                          <li
+                            className={
+                              passwordValidations.hasSpecialChars
+                                ? "valid"
+                                : "invalid"
+                            }
+                          >
+                            <span className="checkmark">✓</span>
+                            Caracteres especiales (!@#$%^&*)
+                          </li>
+                        </ul>
                       </ul>
-                    </ul>
+                    </div>
                   </div>
+                )}
+                {/* Mobile/bloque */}
+                <div className="password-helper-mobile">
+                  {password.length > 0 && (
+                    <div className="tooltip-content">
+                      <p className="tooltip-title">
+                        Tu contraseña debe contener:
+                      </p>
+                      <ul className="tooltip-list">
+                        <li
+                          className={
+                            passwordValidations.minLength ? "valid" : "invalid"
+                          }
+                        >
+                          <span className="checkmark">✓</span>
+                          Al menos 8 caracteres
+                        </li>
+                        <li
+                          className={
+                            passwordValidations.hasThreeRequirements
+                              ? "valid"
+                              : "invalid"
+                          }
+                        >
+                          <span className="checkmark">✓</span>
+                          Al menos 3 de los siguientes:
+                        </li>
+                        <ul className="sub-tooltip-list">
+                          <li
+                            className={
+                              passwordValidations.hasLowercase
+                                ? "valid"
+                                : "invalid"
+                            }
+                          >
+                            <span className="checkmark">✓</span>
+                            Minúsculas (a-z)
+                          </li>
+                          <li
+                            className={
+                              passwordValidations.hasUppercase
+                                ? "valid"
+                                : "invalid"
+                            }
+                          >
+                            <span className="checkmark">✓</span>
+                            Mayúsculas (A-Z)
+                          </li>
+                          <li
+                            className={
+                              passwordValidations.hasNumbers ? "valid" : "invalid"
+                            }
+                          >
+                            <span className="checkmark">✓</span>
+                            Números (0-9)
+                          </li>
+                          <li
+                            className={
+                              passwordValidations.hasSpecialChars
+                                ? "valid"
+                                : "invalid"
+                            }
+                          >
+                            <span className="checkmark">✓</span>
+                            Caracteres especiales (!@#$%^&*)
+                          </li>
+                        </ul>
+                      </ul>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
 
