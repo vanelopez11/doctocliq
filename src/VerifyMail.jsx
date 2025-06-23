@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./VerifyMail.css";
 import StepHeader from "./StepHeader";
+import mailImg from "./assets/mail.png";
 
 const VerifyMail = ({
   goTo,
@@ -94,7 +95,7 @@ const VerifyMail = ({
       // For demo purposes, accept any 4-digit code, but in production this would validate against the sent code
       if (codeString.length === 4 && /^\d{4}$/.test(codeString)) {
         // Success - navigate to next step
-        goTo("otp_code");
+        goTo("datos_propietario");
       } else {
         setError("Código incorrecto. Intenta nuevamente.");
         // Clear the code and focus first input
@@ -133,7 +134,8 @@ const VerifyMail = ({
         currentStep={2}
         showSteps={true}
         onInicio={goHome}
-        onSiguiente={() => goTo("otp_code")}
+        onAnterior={() => goTo && goTo("otp_code")}
+        onSiguiente={() => goTo("datos_propietario")}
       />
       <div className="verify-mail-card">
         {/* Header Section */}
@@ -143,71 +145,17 @@ const VerifyMail = ({
 
         {/* Email Verification Image */}
         <div className="verification-image">
-          <svg
-            width="218"
-            height="197"
-            viewBox="0 0 218 197"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clipPath="url(#clip0_22_708)">
-              <mask
-                id="mask0_22_708"
-                style={{ maskType: "luminance" }}
-                maskUnits="userSpaceOnUse"
-                x="0"
-                y="0"
-                width="218"
-                height="197"
-              >
-                <path d="M218 0H0V197H218V0Z" fill="white" />
-              </mask>
-              <g mask="url(#mask0_22_708)">
-                <path
-                  opacity="0.1"
-                  d="M109 192.068C160.676 192.068 202.568 150.176 202.568 98.5C202.568 46.8236 160.676 4.93158 109 4.93158C57.3236 4.93158 15.4316 46.8236 15.4316 98.5C15.4316 150.176 57.3236 192.068 109 192.068Z"
-                  fill="#61D6E6"
-                />
-                <path
-                  d="M124.994 235.654C128.412 206.606 126.972 170.611 124.976 136.805L108.28 144.959L96.6309 236.205C103.232 236.593 124.702 238.141 124.994 235.654Z"
-                  fill="#FFD5CC"
-                />
-                <path
-                  d="M102.781 148.034C102.781 148.034 106.674 102.261 117.82 109.033C128.967 115.806 126.238 142.551 126.238 142.551L102.781 148.034Z"
-                  fill="#007B8E"
-                />
-                <path
-                  d="M122.631 242.834C122.631 242.834 36.3727 279.648 42.4562 234.916C48.5397 190.185 37.6725 161.464 41.8792 106.94C49.0758 96.1462 97.1179 102.175 97.1179 102.175C98.278 102.331 99.374 102.522 100.437 102.715C105.512 103.673 111.108 102.874 118.516 109.991C125.923 117.108 120.402 206.102 122.631 242.834Z"
-                  fill="#008BA1"
-                />
-                <path
-                  d="M96.0914 86.7085L71.6672 79.1132C71.6672 79.1132 79.6077 96.156 72.0702 100.213C72.0702 100.213 86.5764 116.439 89.6849 116.382C92.7934 116.325 97.5915 102.258 97.5915 102.258C91.1831 97.4955 92.8582 92.2527 96.0914 86.7085Z"
-                  fill="#FFD5CC"
-                />
-                <path
-                  d="M96.0985 88.1254L77.1953 86.8895C80.8974 90.0845 89.5307 96.9793 94.4464 98.9983C91.813 94.9384 93.1297 90.2202 96.0985 88.1254Z"
-                  fill="#F4C4BA"
-                />
-                <path
-                  d="M112.439 56.4548C106.399 59.3296 92.9559 57.9666 101.939 31.9015C109.608 9.92784 123.69 51.1379 112.439 56.4548Z"
-                  fill="#50535A"
-                />
-                <path
-                  d="M62.7235 45.1105C63.6814 63.6855 63.2732 74.6068 72.6521 84.1785C86.7309 98.5481 109.974 90.1116 114.648 71.6054C118.863 54.9348 116.62 27.3601 98.3249 19.9256C94.2813 18.2842 89.8848 17.6849 85.5458 18.1836C81.2067 18.6824 77.0666 20.2629 73.5116 22.7777C69.9566 25.2926 67.1027 28.6597 65.2162 32.565C63.3297 36.4703 62.4722 40.7864 62.7235 45.1105Z"
-                  fill="#FFD5CC"
-                />
-                <path
-                  d="M104.874 70.3614C98.196 69.7633 94.812 69.2833 88.5135 67.8985C88.2482 67.8401 87.9888 68.0066 87.9578 68.2765C87.7398 70.1731 87.5055 77.0341 95.3137 78.1128C103.108 79.1897 104.93 72.7338 105.289 70.8879C105.341 70.6218 105.144 70.3855 104.874 70.3614Z"
-                  fill="#A33A3A"
-                />
-              </g>
-            </g>
-            <defs>
-              <clipPath id="clip0_22_708">
-                <rect width="218" height="197" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
+          <img
+            src={mailImg}
+            alt="Correo enviado"
+            style={{
+              width: 400,
+              height: 163,
+              objectFit: "contain",
+              display: "block",
+              margin: "0 auto",
+            }}
+          />
         </div>
 
         {/* Description Text */}
@@ -259,7 +207,9 @@ const VerifyMail = ({
 
         {/* Verify Button */}
         <button
-          className={`verify-button ${isCodeComplete && !isLoading ? "active" : ""}`}
+          className={`verify-button ${
+            isCodeComplete && !isLoading ? "active" : ""
+          }`}
           onClick={handleVerifyCode}
           disabled={!isCodeComplete || isLoading}
         >

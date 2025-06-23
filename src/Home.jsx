@@ -17,8 +17,8 @@ const Home = ({ goTo }) => (
         }}
       >
         <button style={{ minWidth: 120 }} onClick={() => goTo('sign_up')}>Sign Up</button>
-        <button style={{ minWidth: 120 }} onClick={() => goTo('verify_mail')}>Verify Mail</button>
         <button style={{ minWidth: 120 }} onClick={() => goTo('otp_code')}>OTP Code</button>
+        <button style={{ minWidth: 120 }} onClick={() => goTo('verify_mail')}>Verify Mail</button>
         <button style={{ minWidth: 120 }} onClick={() => goTo('datos_propietario')}>Datos Propietario</button>
         <button style={{ minWidth: 120 }} onClick={() => goTo('datos_negocio')}>Datos Negocio</button>
       </div>

@@ -94,32 +94,49 @@
   gap: 10px;
 }
 
+/* Mejora el círculo de los pasos para que sea más redondo, con fondo y borde como en StepHeader */
 .step-circle {
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--stroke-weight-1) solid var(--color-azure-48);
+  border: var(--stroke-weight-1) solid var(--color-azure-81);
+  background: var(--color-grey-96);
   transition: var(--transition-default);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  position: relative;
+  padding: 0; /* Asegura que no haya padding extra */
+  margin: 0;  /* Asegura que no haya margen extra */
 }
 
 .step-circle.active {
   border: var(--stroke-weight-3) solid var(--color-cyan-32);
+  background: var(--color-cyan-32);
 }
 
 .step-number {
   font-family: var(--font-family-nunito);
-  font-size: var(--font-size-10);
-  font-weight: var(--font-weight-400);
+  font-size: 15px;
+  font-weight: var(--font-weight-700);
   color: var(--color-azure-48);
-  transition: var(--transition-default);
+  z-index: 1;
+  background: transparent;
+  position: relative;
+  padding: 0; /* Elimina padding */
+  margin: 0;  /* Elimina margen */
+  line-height: 1; /* Ajusta el line-height para centrar */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .step-circle.active .step-number {
-  font-weight: var(--font-weight-700);
-  color: var(--color-cyan-32);
+  color: #fff;
+  background: transparent;
 }
 
 .step-label {
@@ -149,23 +166,24 @@
 }
 
 .form-field {
+  display: block;
   margin-bottom: 18px;
   position: relative;
 }
 
 .form-label {
   display: block;
+  min-width: unset;
+  max-width: unset;
+  flex: unset;
   font-family: var(--font-family-nunito);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-400);
   color: var(--color-grey-33);
   line-height: var(--line-height-23-8);
   margin-bottom: 2px;
-}
-
-.required-asterisk {
-  color: var(--color-roman);
-  margin-left: 2px;
+  margin-right: 0;
+  text-align: left;
 }
 
 /* Form Inputs */
@@ -458,7 +476,9 @@
 .action-buttons {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* Centra los botones */
+  position: relative;
+  gap: 0;
 }
 
 .exit-button {
@@ -472,11 +492,9 @@
   cursor: pointer;
   padding: 8px 0;
   transition: var(--transition-default);
-}
-
-.exit-button:hover {
-  color: var(--color-azure-48);
-  transform: translateY(-1px);
+  margin-right: 0;
+  position: absolute;
+  left: 0;
 }
 
 .continue-button {
@@ -496,6 +514,7 @@
   opacity: var(--opacity-50);
   transition: var(--transition-default);
   box-sizing: border-box;
+  margin-left: 0;
 }
 
 .continue-button.active {

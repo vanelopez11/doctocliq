@@ -104,6 +104,13 @@
   margin-left: auto;
 }
 
+.step-header-container .nav-button--anterior {
+  background: #f3f3f3;
+  color: #333;
+  margin-left: 12px;
+  margin-right: 0;
+}
+
 .step-header-container .nav-button:hover {
   background: rgba(255, 255, 255, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -114,6 +121,11 @@
 }
 
 /* Quitamos los estilos de deshabilitado */
+.step-header-container .nav-button--anterior:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .step-header-container {

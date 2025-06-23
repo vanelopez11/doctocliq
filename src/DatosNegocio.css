@@ -1,0 +1,369 @@
+/* Estilos para DatosNegocio, igualando la UI de DatosPropietario */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap");
+
+:root {
+  --color-white-solid: #fff;
+  --color-grey-33: #50535a;
+  --color-cyan-32: #008ba1;
+  --color-azure-42: #2965ab;
+  --color-azure-48: #6c838b;
+  --color-azure-81: #bdd6e0;
+  --color-azure-71: #a1bdc8;
+  --color-roman: #d85a5a;
+  --color-grey-96: #f5f5f5;
+  --font-family-nunito: "Nunito", -apple-system, Roboto, Helvetica, sans-serif;
+  --font-size-18: 18px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+  --font-size-10: 10px;
+  --font-weight-200: 200;
+  --font-weight-400: 400;
+  --font-weight-700: 700;
+  --line-height-28: 28px;
+  --line-height-24: 24px;
+  --line-height-23-8: 23.8px;
+  --line-height-17: 17px;
+  --line-height-16: 16px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --stroke-weight-1: 1px;
+  --stroke-weight-3: 3px;
+  --opacity-50: 0.5;
+  --transition-default: all 0.2s ease;
+  --shadow-default: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.datos-negocio-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f7fafd;
+  padding: 80px 20px 20px;
+  box-sizing: border-box;
+}
+
+.datos-negocio-card {
+  width: 510px;
+  background: var(--color-white-solid);
+  border-radius: var(--radius-12);
+  box-shadow: var(--shadow-default);
+  padding: 40px 44px 32px;
+  box-sizing: border-box;
+  position: relative;
+  transition: var(--transition-default);
+}
+
+.datos-negocio-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form-title {
+  color: var(--color-grey-33);
+  font-family: var(--font-family-nunito);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-28);
+  margin: 0;
+  text-align: center;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 48px;
+  gap: 16px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Mejora el círculo de los pasos para que sea más redondo, con fondo y borde como en StepHeader */
+.step-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--stroke-weight-1) solid var(--color-azure-81);
+  background: var(--color-grey-96);
+  transition: var(--transition-default);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  position: relative;
+  padding: 0; /* Asegura que no haya padding extra */
+  margin: 0;  /* Asegura que no haya margen extra */
+}
+
+.step-circle.active {
+  border: var(--stroke-weight-3) solid var(--color-cyan-32);
+  background: var(--color-cyan-32);
+}
+
+.step-number {
+  font-family: var(--font-family-nunito);
+  font-size: 15px;
+  font-weight: var(--font-weight-700);
+  color: var(--color-azure-48);
+  z-index: 1;
+  background: transparent;
+  position: relative;
+  padding: 0; /* Elimina padding */
+  margin: 0;  /* Elimina margen */
+  line-height: 1; /* Ajusta el line-height para centrar */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-circle.active .step-number {
+  color: #fff;
+  background: transparent;
+}
+
+.step-label {
+  font-family: var(--font-family-nunito);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-400);
+  color: var(--color-azure-48);
+  line-height: var(--line-height-23-8);
+  transition: var(--transition-default);
+}
+
+.step-label.active {
+  font-weight: var(--font-weight-700);
+  color: var(--color-cyan-32);
+}
+
+.step-divider {
+  width: 36px;
+  height: var(--stroke-weight-1);
+  background: var(--color-azure-42);
+  flex-shrink: 0;
+}
+
+.business-form {
+  margin-bottom: 24px;
+}
+
+.form-field {
+  display: block;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  min-width: unset;
+  max-width: unset;
+  flex: unset;
+  font-family: var(--font-family-nunito);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-400);
+  color: var(--color-grey-33);
+  line-height: var(--line-height-23-8);
+  margin-bottom: 2px;
+  margin-right: 0;
+  text-align: left;
+}
+
+.required-asterisk {
+  color: var(--color-roman);
+  margin-left: 2px;
+}
+
+.form-input, .form-select {
+  flex: unset;
+  min-width: unset;
+  width: 100%;
+  height: 36px;
+  padding: 5px 21px;
+  border: var(--stroke-weight-1) solid var(--color-azure-81);
+  border-radius: var(--radius-8);
+  background: var(--color-white-solid);
+  font-family: var(--font-family-nunito);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-400);
+  color: var(--color-grey-33);
+  box-sizing: border-box;
+  outline: none;
+  transition: var(--transition-default);
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--color-cyan-32);
+  box-shadow: 0 0 0 2px rgba(0, 139, 161, 0.1);
+}
+
+.form-input:hover:not(:focus), .form-select:hover:not(:focus) {
+  border-color: var(--color-azure-48);
+}
+
+.form-input.error, .form-select.error {
+  border-color: var(--color-roman);
+  background-color: rgba(216, 90, 90, 0.05);
+}
+
+.form-input::placeholder {
+  color: var(--color-azure-71);
+  font-style: italic;
+}
+
+.terms-section {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.terms-text {
+  font-family: var(--font-family-nunito);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-400);
+  color: var(--color-grey-33);
+  line-height: var(--line-height-23-8);
+  margin: 0;
+}
+
+.terms-link {
+  color: var(--color-cyan-32);
+  text-decoration: underline;
+  transition: var(--transition-default);
+}
+
+.terms-link:hover {
+  color: #006d7a;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  gap: 16px;
+}
+
+.finish-button {
+  width: 199px;
+  height: 32px;
+  padding: 4px 0;
+  border: none;
+  border-radius: var(--radius-8);
+  background: var(--color-grey-96);
+  color: var(--color-grey-33);
+  font-family: var(--font-family-nunito);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-400);
+  line-height: var(--line-height-23-8);
+  text-align: center;
+  cursor: not-allowed;
+  opacity: var(--opacity-50);
+  transition: var(--transition-default);
+  box-sizing: border-box;
+}
+
+.finish-button.active {
+  background: var(--color-cyan-32);
+  color: var(--color-white-solid);
+  cursor: pointer;
+  opacity: 1;
+  font-weight: var(--font-weight-700);
+}
+
+.finish-button.active:hover:not(:disabled) {
+  background: #006d7a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 139, 161, 0.3);
+}
+
+.finish-button:disabled {
+  cursor: not-allowed;
+}
+
+.back-button {
+  width: 120px;
+  height: 32px;
+  padding: 4px 0;
+  border: none;
+  border-radius: var(--radius-8);
+  background: var(--color-white-solid);
+  color: var(--color-cyan-32);
+  font-family: var(--font-family-nunito);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-23-8);
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--color-cyan-32);
+  transition: var(--transition-default);
+  box-sizing: border-box;
+}
+
+.back-button:hover:not(:disabled) {
+  background: var(--color-cyan-32);
+  color: var(--color-white-solid);
+  border-color: var(--color-cyan-32);
+  box-shadow: 0 4px 12px rgba(0, 139, 161, 0.12);
+}
+
+@media (max-width: 768px) {
+  .datos-negocio-container {
+    padding: 16px;
+  }
+  .datos-negocio-card {
+    width: 100%;
+    max-width: 510px;
+    padding: 32px 24px 24px;
+  }
+  .progress-steps {
+    margin-bottom: 32px;
+  }
+  .step-label {
+    font-size: var(--font-size-12);
+  }
+  .finish-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .datos-negocio-card {
+    padding: 24px 16px 20px;
+  }
+  .form-title {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .progress-steps {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .step-divider {
+    width: 24px;
+  }
+  .step-label {
+    display: none;
+  }
+  .form-field {
+    margin-bottom: 16px;
+  }
+  .form-input, .form-select {
+    height: 40px;
+  }
+  .terms-text {
+    font-size: var(--font-size-12);
+    line-height: 18px;
+  }
+}

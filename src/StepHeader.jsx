@@ -12,8 +12,10 @@ const StepHeader = ({
   currentStep,
   showSteps = false,
   onInicio,
+  onAnterior, // Nuevo prop para retroceder
   onSiguiente,
-  siguienteDisabled = false, // Mantenemos el parámetro para compatibilidad pero lo ignoramos
+  siguienteDisabled = false,
+  anteriorDisabled = false, // Nuevo prop para deshabilitar el botón anterior
 }) => (
   <div className="step-header-container">
     <button onClick={onInicio} className="nav-button nav-button--back">
@@ -32,12 +34,23 @@ const StepHeader = ({
         ))}
       </div>
     )}
-    <button
-      onClick={onSiguiente}
-      className="nav-button nav-button--next"
-    >
-      Siguiente
-    </button>
+    {/* Agrupar Anterior y Siguiente a la derecha */}
+    <div style={{ display: 'flex', gap: 8, marginLeft: 'auto' }}>
+      <button
+        onClick={onAnterior}
+        className="nav-button nav-button--anterior"
+        disabled={anteriorDisabled}
+      >
+        Anterior
+      </button>
+      <button
+        onClick={onSiguiente}
+        className="nav-button nav-button--next"
+        disabled={siguienteDisabled}
+      >
+        Siguiente
+      </button>
+    </div>
   </div>
 );
 

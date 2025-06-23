@@ -151,6 +151,7 @@ const DatosPropietario = ({ goTo, goHome }) => {
         currentStep={3}
         showSteps={true}
         onInicio={goHome}
+        onAnterior={() => goTo && goTo("verify_mail")}
         onSiguiente={handleHeaderNext}
       />
       <div className="datos-propietario-card">
@@ -322,20 +323,6 @@ const DatosPropietario = ({ goTo, goHome }) => {
             {errors.telefono && touched.telefono && (
               <span className="error-message">{errors.telefono}</span>
             )}
-          </div>
-
-          {/* Terms and conditions */}
-          <div className="terms-section">
-            <p className="terms-text">
-              Al continuar acepto los{" "}
-              <a href="#" className="terms-link">
-                términos y condiciones
-              </a>{" "}
-              y{" "}
-              <a href="#" className="terms-link">
-                política de privacidad
-              </a>
-            </p>
           </div>
 
           {/* Action buttons */}

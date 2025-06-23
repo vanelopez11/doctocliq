@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./SignUp.css";
 import StepHeader from "./StepHeader";
+import logo from "./assets/logo-doctocliq-light.webp";
 
 const SignUp = ({ goTo, goHome }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   const [showPasswordTooltip, setShowPasswordTooltip] = useState(false);
+  const [passwordFocused, setPasswordFocused] = useState(false);
 
   // Referencia al formulario para poder hacer submit desde el header
   const formRef = React.useRef();
@@ -39,7 +40,7 @@ const SignUp = ({ goTo, goHome }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormComplete) {
-      goTo("verify_mail");
+      goTo("otp_code");
     }
   };
 
@@ -50,7 +51,7 @@ const SignUp = ({ goTo, goHome }) => {
 
   // Handler para el botón Siguiente del header (sin validación)
   const handleHeaderNext = () => {
-    goTo("verify_mail");
+    goTo("otp_code");
   };
 
   return (
@@ -60,14 +61,23 @@ const SignUp = ({ goTo, goHome }) => {
         currentStep={1}
         showSteps={true}
         onInicio={goHome}
+        onAnterior={() => goTo && goTo("home")}
         onSiguiente={handleHeaderNext}
       />
 
       <div className="signup-card">
         <div className="signup-header">
           <div className="doctocliq-logo">
-            <div className="logo-text">DOCTOCLIQ</div>
-            <div className="logo-subtitle">Rentabiliza tu consultorio</div>
+            <img
+              src={logo}
+              alt="Doctocliq"
+              style={{
+                width: 120,
+                height: "auto",
+                display: "block",
+                margin: "0 auto",
+              }}
+            />
           </div>
           <h1 className="welcome-title">Welcome</h1>
           <p className="signup-subtitle">Sign Up to Doctocliq</p>
@@ -84,26 +94,16 @@ const SignUp = ({ goTo, goHome }) => {
               <svg
                 width="20"
                 height="20"
-                viewBox="0 0 21 20"
-                fill="none"
+                viewBox="0 0 48 48"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M0.25 15.4167V4.58334L7.33333 10L0.25 15.4167Z"
-                  fill="#FBBC05"
-                />
-                <path
-                  d="M0.25 4.58333L7.33333 10L10.25 7.45833L20.25 5.83333V0H0.25V4.58333Z"
-                  fill="#EA4335"
-                />
-                <path
-                  d="M0.25 15.4167L12.75 5.83333L16.0417 6.25L20.25 0V20H0.25V15.4167Z"
-                  fill="#34A853"
-                />
-                <path
-                  d="M20.25 20L7.33333 10L5.66667 8.75L20.25 4.58334V20Z"
-                  fill="#4285F4"
-                />
+                <g>
+                  <path fill="#4285F4" d="M24 9.5c3.54 0 6.07 1.53 7.47 2.81l5.54-5.39C33.64 3.54 29.2 1.5 24 1.5 14.82 1.5 6.98 7.6 3.69 15.44l6.44 5.01C12.1 14.13 17.57 9.5 24 9.5z"/>
+                  <path fill="#34A853" d="M46.1 24.55c0-1.64-.15-3.21-.42-4.73H24v9.18h12.42c-.54 2.9-2.18 5.36-4.66 7.02l7.18 5.58C43.98 37.13 46.1 31.36 46.1 24.55z"/>
+                  <path fill="#FBBC05" d="M10.13 28.45a14.5 14.5 0 0 1 0-8.9l-6.44-5.01A23.97 23.97 0 0 0 0 24c0 3.82.92 7.44 2.54 10.46l7.59-6.01z"/>
+                  <path fill="#EA4335" d="M24 46.5c6.48 0 11.92-2.14 15.89-5.84l-7.18-5.58c-2 1.36-4.56 2.17-8.71 2.17-6.43 0-11.9-4.63-13.87-10.95l-7.59 6.01C6.98 40.4 14.82 46.5 24 46.5z"/>
+                  <path fill="none" d="M0 0h48v48H0z"/>
+                </g>
               </svg>
               Google
             </button>
@@ -163,6 +163,8 @@ const SignUp = ({ goTo, goHome }) => {
                 className="form-input"
                 placeholder=" "
                 required
+                onFocus={() => setPasswordFocused(true)}
+                onBlur={() => setPasswordFocused(false)}
               />
               <label className="floating-label">Password*</label>
               <button
@@ -188,7 +190,7 @@ const SignUp = ({ goTo, goHome }) => {
               </button>
 
               {/* Tooltip de validación de contraseña */}
-              {showPasswordTooltip && password.length > 0 && (
+              {(passwordFocused || showPasswordTooltip) && password.length > 0 && (
                 <div className="password-tooltip">
                   <div className="tooltip-content">
                     <p className="tooltip-title">
@@ -260,47 +262,12 @@ const SignUp = ({ goTo, goHome }) => {
             </div>
           </div>
 
-          {/* Checkbox Recuérdame */}
-          <div className="form-group remember-me">
-            <label className="checkbox-wrapper">
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="checkbox-input"
-              />
-              <span className="checkbox-custom"></span>
-              <span className="checkbox-label">Recuérdame</span>
-            </label>
-          </div>
-
           <button
             type="submit"
             className={`continue-button ${isFormComplete ? "active" : ""}`}
-            disabled={!isFormComplete}
+            style={{ display: 'block', margin: '32px auto 0', minWidth: 180 }}
           >
-            {isFormComplete ? (
-              <>
-                <span>Continue</span>
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6 12L10 8L6 4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </>
-            ) : (
-              "Complete los campos requeridos"
-            )}
+            Continuar
           </button>
         </form>
 
